@@ -1,0 +1,4 @@
+IDL program to fill in ALOS pixels affected by high topography using Landsat
+
+version 1 uses MODIS
+version 2 uses landsat
