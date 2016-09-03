@@ -18,8 +18,8 @@ PRO fill_alos, hh_array, hv_array, mask, ndvi
 	endif
 
 
-	hh_index = where(hh_array gt 15000, hh_count)
-	hv_index = where(hv_array gt 7000, hv_count)
+	hh_index = where(hh_array gt 8000, hh_count)
+	hv_index = where(hv_array gt 2000, hv_count)
 
 	if (hh_count gt 0) then begin
 		ndvi_ulong = ulong(ndvi[hh_index])
