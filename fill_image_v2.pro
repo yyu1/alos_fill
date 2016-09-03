@@ -3,17 +3,19 @@ PRO fill_alos, hh_array, hv_array, mask, ndvi
 
 	mask_index = where(((mask eq 0) or (mask eq 100) or (mask eq 150)), mask_count)
 
-	ndvi_ulong = ulong(ndvi[mask_index])
-	hh_mask_fill = ndvi_ulong * 69UL - 5730UL
-	hv_mask_fill = ndvi_ulong * 42UL - 3714UL
+	if (mask_count gt 0) then begin
+		ndvi_ulong = ulong(ndvi[mask_index])
+		hh_mask_fill = ndvi_ulong * 69UL - 5730UL
+		hv_mask_fill = ndvi_ulong * 42UL - 3714UL
 
-	index = where((hh_mask_fill lt 1000), hh_bad_count)
-	if (hh_bad_count gt 0) then hh_mask_fill[index] = 1000
-	index = where((hv_mask_fill lt 500), hv_bad_count)
-	if (hv_bad_count gt 0) then hv_mask_fill[index] = 500
+		index = where((hh_mask_fill lt 1000), hh_bad_count)
+		if (hh_bad_count gt 0) then hh_mask_fill[index] = 1000
+		index = where((hv_mask_fill lt 500), hv_bad_count)
+		if (hv_bad_count gt 0) then hv_mask_fill[index] = 500
 
-	hh_array[mask_index] = hh_mask_fill
-	hv_array[mask_index] = hv_mask_fill
+		hh_array[mask_index] = hh_mask_fill
+		hv_array[mask_index] = hv_mask_fill
+	endif
 
 
 	hh_index = where(hh_array gt 15000, hh_count)
